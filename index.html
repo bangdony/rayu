@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mau Jadi Pacarku Gak? 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 100%);
+      text-align: center;
+      color: #fff;
+      padding: 30px 20px 100px;
+      overflow-x: hidden;
+    }
+
+    img#banner {
+      width: 160px;
+      border-radius: 50%;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
+    }
+
+    img#banner:hover {
+      transform: scale(1.08) rotate(2deg);
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      margin: 15px 10px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .yes {
+      background-color: #ffffff;
+      color: #e91e63;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: #fff;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    #result {
+      margin-top: 50px;
+      font-size: 1.6em;
+      font-weight: bold;
+      min-height: 80px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: fall 4s linear infinite;
+      opacity: 0.8;
+      z-index: 1000;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) scale(1); opacity: 1; }
+      100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    }
+
+    .confetti {
+      width: 10px;
+      height: 10px;
+      background: red;
+      position: absolute;
+      animation: confettiFall 3s linear infinite;
+      z-index: 999;
+      border-radius: 50%;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    .dark-mode {
+      background: #1e1e1e;
+      color: #ccc;
+    }
+
+    /* POPUP STYLING */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .popup-content {
+      background: #fff;
+      color: #d81b60;
+      padding: 35px 30px;
+      border-radius: 20px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+      animation: popIn 0.4s ease-out;
+    }
+
+    .popup-content h2 {
+      font-family: 'Pacifico', cursive;
+      margin-bottom: 15px;
+      font-size: 2em;
+      color: #e91e63;
+    }
+
+    .popup-content p {
+      font-size: 1em;
+      color: #555;
+      margin: 10px 0;
+    }
+
+    .btn-close {
+      background-color: #d81b60;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+
+    .btn-close:hover {
+      background-color: #c2185b;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 2em; }
+      .btn { width: 90%; font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+
+  <img id="banner" src="assets/img/cewe.jpg" alt="Romantic Banner" />
+
+  <p style="font-size: 1.4em; font-weight: bold;">Riska Dwi Arianti 😍💞</p>
+  <h1>Hai Kamu yang Manis 😍</h1>
+  <p>Aku udah lama mau bilang ini...</p>
+  <p><strong>Aku suka kamu. Mau gak jadi pacarku? 💞</strong></p>
+
+  <button class="btn yes" onclick="jawab('ya')">Aku Mau 💘</button>
+  <button class="btn no" id="btnNo" onmouseover="pindahPosisi()">Nggak Dulu 🙈</button>
+
+  <div id="result"></div>
+
+  <!-- POPUP -->
+  <div id="popup" class="popup-overlay">
+    <div class="popup-content">
+      <h2>Yeay! 😍</h2>
+      <p>Ya ampun! Aku seneng banget! 💕 Kita resmi sekarang ya 😘</p>
+      <p>Terima kasih sudah mau menerima aku! Ini adalah hari terindah dalam hidupku. Aku berjanji akan membuatmu bahagia selalu.</p>
+      <button onclick="tutupPopup()" class="btn-close">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    function jawab(pilihan) {
+      const result = document.getElementById('result');
+      const msg = new SpeechSynthesisUtterance();
+
+      if (pilihan === 'ya') {
+        result.innerHTML = ""; // kosongkan tulisan lama
+        msg.text = "Ya ampun! Aku seneng banget! Kita resmi sekarang ya. Terima kasih sudah mau menerima aku. Ini adalah hari terindah dalam hidupku. Aku berjanji akan membuatmu bahagia selalu.";
+        animasiBahagia();
+        tampilkanPopup(); // tampilkan popup setelah animasi
+      } else {
+        result.innerHTML = "Yah... gak apa-apa. Aku tetap doain kamu bahagia kok 💔";
+        msg.text = "Yah gak apa-apa, aku tetap doain kamu bahagia kok.";
+        animasiSedih();
+      }
+
+      msg.lang = 'id-ID';
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(msg);
+    }
+
+    function tampilkanPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function animasiBahagia() {
+      document.body.classList.remove("dark-mode");
+      for (let i = 0; i < 40; i++) {
+        const love = document.createElement('div');
+        love.innerText = '❤️';
+        love.className = 'emoji';
+        love.style.left = Math.random() * 100 + 'vw';
+        love.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        love.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(love);
+        setTimeout(() => love.remove(), 5000);
+      }
+
+      for (let i = 0; i < 50; i++) {
+        const conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.background = warnaRandom();
+        conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 4000);
+      }
+    }
+
+    function animasiSedih() {
+      document.body.classList.add("dark-mode");
+      for (let i = 0; i < 25; i++) {
+        const tear = document.createElement('div');
+        tear.innerText = '💧';
+        tear.className = 'emoji';
+        tear.style.left = Math.random() * 100 + 'vw';
+        tear.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        tear.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(tear);
+        setTimeout(() => tear.remove(), 5000);
+      }
+    }
+
+    function warnaRandom() {
+      const colors = ['#ff4081', '#ffd740', '#69f0ae', '#40c4ff', '#ffab40'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function pindahPosisi() {
+      const btn = document.getElementById("btnNo");
+      const maxX = window.innerWidth - btn.offsetWidth;
+      const maxY = window.innerHeight - btn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      btn.style.left = randomX + "px";
+      btn.style.top = randomY + "px";
+    }
+  </script>
+</body>
+</html>

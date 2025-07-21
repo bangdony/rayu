@@ -180,7 +180,7 @@
   <img id="banner" src="assets/img/cewe.jpg" alt="Romantic Banner" />
 
   <p style="font-size: 1.4em; font-weight: bold;">Riska Dwi Arianti 😍💞</p>
-  <h1>Hai Kamu yang Manis 😍</h1>
+  <h1>Hai Kamu yang Cantik 😍</h1>
   <p>Aku udah lama mau bilang ini...</p>
   <p><strong>Aku suka kamu. Mau gak jadi pacarku? 💞</strong></p>
 
@@ -199,19 +199,33 @@
     </div>
   </div>
 
+  <!-- Tambahkan di dalam <body> sebelum script -->
+  <audio id="backsound" src="assets/audio/rasa.mp3" preload="auto"></audio>
+
   <script>
     function jawab(pilihan) {
       const result = document.getElementById('result');
       const msg = new SpeechSynthesisUtterance();
+      const backsound = document.getElementById('backsound');
 
       if (pilihan === 'ya') {
-        result.innerHTML = ""; // kosongkan tulisan lama
+        result.innerHTML = "";
         msg.text = "Ya ampun! Aku seneng banget! Kita resmi sekarang ya. Terima kasih sudah mau menerima aku. Ini adalah hari terindah dalam hidupku. Aku berjanji akan membuatmu bahagia selalu.";
+
+        // Putar backsound
+        backsound.currentTime = 0;
+        backsound.play();
+
         animasiBahagia();
-        tampilkanPopup(); // tampilkan popup setelah animasi
+        tampilkanPopup();
       } else {
         result.innerHTML = "Yah... gak apa-apa. Aku tetap doain kamu bahagia kok 💔";
         msg.text = "Yah gak apa-apa, aku tetap doain kamu bahagia kok.";
+
+        // Hentikan backsound jika sedang diputar
+        backsound.pause();
+        backsound.currentTime = 0;
+
         animasiSedih();
       }
 
